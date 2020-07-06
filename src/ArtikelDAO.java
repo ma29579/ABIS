@@ -59,25 +59,6 @@ public class ArtikelDAO extends AbstractDAO<Artikel> {
     }
 
     @Override
-    protected void update(Artikel artikel){
-
-        PreparedStatement updateStatement = null;
-
-        try {
-            updateStatement = db.prepareStatement(updateStatement());
-            updateStatement.setString(1, artikel.getBezeichnung());
-            updateStatement.setDouble(2, artikel.getPreis());
-            updateStatement.setInt(3, artikel.getBestand());
-            updateStatement.setInt(4, artikel.getMindestBestand());
-            updateStatement.setLong(5, artikel.getArtikelNummer());
-            updateStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
     protected Long getKey(Artikel object) {
         return object.getArtikelNummer();
     }
@@ -88,7 +69,21 @@ public class ArtikelDAO extends AbstractDAO<Artikel> {
     }
 
     @Override
-    protected void doUpdate() {
+    protected void doUpdate(Artikel object) {
+
+        PreparedStatement updateStatement = null;
+
+        try {
+            updateStatement = db.prepareStatement(updateStatement());
+            updateStatement.setString(1, object.getBezeichnung());
+            updateStatement.setDouble(2, object.getPreis());
+            updateStatement.setInt(3, object.getBestand());
+            updateStatement.setInt(4, object.getMindestBestand());
+            updateStatement.setLong(5, object.getArtikelNummer());
+            updateStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

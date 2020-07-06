@@ -23,7 +23,7 @@ public abstract class AbstractDAO <T> {
     protected abstract String insertStatement();
     protected abstract Long getKey(T object);
     protected abstract Connection getConnection();
-    protected abstract void doUpdate();
+    protected abstract void doUpdate(T object);
     protected abstract T doLoad(Long id, ResultSet rs);
     protected abstract long doInsert(T object) throws SQLException;
 
@@ -38,7 +38,10 @@ public abstract class AbstractDAO <T> {
         return id;
     }
 
-    protected abstract void update(T object) throws SQLException;
+    protected void update(T object) throws SQLException {
+        //Cache updaten
+        doUpdate(object);
+    }
 
     protected void cleanUp(){
         cache.clear();
