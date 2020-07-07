@@ -7,7 +7,7 @@ public abstract class AbstractDAO <T> {
     protected Connection db;
     protected ResultSet rs;
 
-    public AbstractDAO(){
+    protected AbstractDAO(){
         try {
 
             db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/abis", "postgres", "postgres");

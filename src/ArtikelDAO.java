@@ -6,8 +6,14 @@ import java.util.ArrayList;
 
 public class ArtikelDAO extends AbstractDAO<Artikel> {
 
+    private static ArtikelDAO instance = new ArtikelDAO();
+
+    private ArtikelDAO(){
+        super();
+    }
+
     public static ArtikelDAO getInstance() {
-        return new ArtikelDAO();
+        return instance;
     }
 
     public ArrayList<Artikel> read() throws SQLException {
