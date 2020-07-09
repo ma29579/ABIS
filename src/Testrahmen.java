@@ -17,18 +17,22 @@ public class Testrahmen {
             a1 = null;
             a1 = Artikel.find(1L);
 
-            System.out.println("Ausgabe von Artikel-1 aus der Datenbank:");
+            System.out.println(
+                    "Ausgabe von Artikel-1 aus der Datenbank:");
             System.out.println("A1 = " + a1.toString());
 
-            System.out.println("\nArtikel mit zu geringem Bestand:");
+            System.out.println(
+                    "\nArtikel mit zu geringem Bestand:");
 
-            ArrayList<Artikel> artikel = Artikel.sucheArtikelMitWenigBestand();
+            ArrayList<Artikel> artikel =
+                    Artikel.sucheArtikelMitWenigBestand();
 
             for(Artikel a : artikel){
                 System.out.println(a.toString());
             }
 
-            System.out.println("\nÄnderung des Bestands von Artikel-2 auf 4 Einheiten!");
+            System.out.println(
+                    "\nÄnderung des Bestands von Artikel-2 auf 4 Einheiten!");
 
             a2.setBestand(4);
             artikel = Artikel.sucheArtikelMitWenigBestand();
@@ -37,7 +41,8 @@ public class Testrahmen {
                 System.out.println(a.toString());
             }
 
-            System.out.println("\nAusgabe des zuvor gelöschten Artikel-3:");
+            System.out.println(
+                    "\nAusgabe des zuvor gelöschten Artikel-3:");
 
             a3.delete();
             a3 = Artikel.find(3L);

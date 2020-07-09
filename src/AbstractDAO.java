@@ -24,7 +24,7 @@ public abstract class AbstractDAO <T> {
     protected abstract Long getKey(T object);
     protected abstract Connection getConnection();
     protected abstract void doUpdate(T object);
-    protected abstract T doLoad(Long id, ResultSet rs);
+    protected abstract T doLoad(ResultSet rs);
     protected abstract long doInsert(T object) throws SQLException;
 
     protected long create(T object) throws SQLException {
@@ -39,7 +39,6 @@ public abstract class AbstractDAO <T> {
     }
 
     protected void update(T object) throws SQLException {
-        //Cache updaten
         doUpdate(object);
     }
 
@@ -47,9 +46,8 @@ public abstract class AbstractDAO <T> {
         cache.clear();
     }
 
-    protected T load(T object, Long id) throws SQLException {
-        cache.put(id,object);
-        return object;
+    protected T load(ResultSet results) throws SQLException {
+        return doLoad(results);
     }
 
     protected ResultSet abstractMultipleRead() throws SQLException{
@@ -74,7 +72,7 @@ public abstract class AbstractDAO <T> {
         if(!rs.next())
             return null;
 
-        result = doLoad(id, rs);
+        result = load(rs);
         return result;
     }
 

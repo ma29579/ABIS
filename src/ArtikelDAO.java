@@ -94,7 +94,7 @@ public class ArtikelDAO extends AbstractDAO<Artikel> {
     }
 
     @Override
-    protected Artikel doLoad(Long id, ResultSet rs) {
+    protected Artikel doLoad(ResultSet rs) {
 
         Artikel neuerArtikel = new Artikel();
         try {
